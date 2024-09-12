@@ -1,6 +1,6 @@
 ﻿namespace DAQO20240911.Auth
 {
-    public interface IJwAuthenticationService
+    public interface IJwtAuthenticationService
     {
         string Authenticate(string userName);
     }

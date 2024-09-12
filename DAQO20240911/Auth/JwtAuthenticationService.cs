@@ -5,8 +5,9 @@ using System.Text;
 
 namespace DAQO20240911.Auth
 {
-    public class JwtAuthenticationService : IJwAuthenticationService
+    public class JwtAuthenticationService : IJwtAuthenticationService
     {
+
         private readonly string _key;
 
         public JwtAuthenticationService(string key)
