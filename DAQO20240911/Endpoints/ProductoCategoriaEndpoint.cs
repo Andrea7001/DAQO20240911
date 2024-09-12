@@ -6,20 +6,28 @@
 
         public static void AddCategoriaProductoEndpoints(this WebApplication app)
         {
-            // Endpoint público para obtener todos los registros
+             
             app.MapGet("/categoria-productos", () =>
             {
                 return categoriaProductos;
             });
 
-            // Endpoint privado para registrar nuevos registros
+             
             app.MapPost("/categoria-productos", (CategoriaProductoRequest request) =>
             {
+                
+                if (request.Id <= 0)
+                {
+                    return Results.BadRequest("El Id debe ser un número positivo.");
+                }
+
                 var categoriaProducto = new CategoriaProducto
                 {
+                    Id = request.Id,
                     Nombre = request.Nombre,
                     Descripcion = request.Descripcion
                 };
+
                 categoriaProductos.Add(categoriaProducto);
 
                 return Results.Ok();
@@ -29,15 +37,18 @@
 
     public class CategoriaProducto
     {
+        public int Id { get; set; }    
         public string? Nombre { get; set; }
         public string? Descripcion { get; set; }
     }
 
     public class CategoriaProductoRequest
     {
+        public int Id { get; set; }  
         public string? Nombre { get; set; }
         public string? Descripcion { get; set; }
     }
+
 
 
 }
